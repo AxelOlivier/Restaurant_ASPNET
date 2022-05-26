@@ -9,11 +9,11 @@ namespace RestoApi.Controllers
     [Route("tables")]
     public class TableController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IDataContext _context;
         private readonly ILogger<TableController> _logger;
 
         public TableController(ILogger<TableController> logger,
-            DataContext context)
+            IDataContext context)
         {
             _logger = logger;
             _context = context;

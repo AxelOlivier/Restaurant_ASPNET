@@ -3,7 +3,7 @@ using RestoApi.models;
 
 namespace RestoApi.Data
 {
-    public class DataContext : DbContext
+    public class DataContext : DbContext, IDataContext
     {
         public DbSet<Table> Tables { get; }
 

@@ -6009,19 +6009,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\axelo\\.nuget\\packages\\": {}
+    "C:\\Users\\Alexi\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\axelo\\Documents\\_Git\\Restaurant_ASPNET\\restaurant_AspNet\\restaurant_AspNet.csproj",
+      "projectUniqueName": "C:\\GIT\\Restaurant_ASPNET\\restaurant_AspNet\\restaurant_AspNet.csproj",
       "projectName": "restaurant_AspNet",
-      "projectPath": "C:\\Users\\axelo\\Documents\\_Git\\Restaurant_ASPNET\\restaurant_AspNet\\restaurant_AspNet.csproj",
-      "packagesPath": "C:\\Users\\axelo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\axelo\\Documents\\_Git\\Restaurant_ASPNET\\restaurant_AspNet\\obj\\",
+      "projectPath": "C:\\GIT\\Restaurant_ASPNET\\restaurant_AspNet\\restaurant_AspNet.csproj",
+      "packagesPath": "C:\\Users\\Alexi\\.nuget\\packages\\",
+      "outputPath": "C:\\GIT\\Restaurant_ASPNET\\restaurant_AspNet\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\axelo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Alexi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6096,7 +6101,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
