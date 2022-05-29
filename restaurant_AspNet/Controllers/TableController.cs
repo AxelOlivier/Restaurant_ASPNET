@@ -9,37 +9,40 @@ namespace RestoApi.Controllers
     [Route("tables")]
     public class TableController : ControllerBase
     {
-        private readonly IDataContext _context;
-        private readonly ILogger<TableController> _logger;
+        private readonly DataContext _context;
 
-        public TableController(ILogger<TableController> logger,
-            IDataContext context)
+        public TableController(DataContext context)
         {
-            _logger = logger;
             _context = context;
         }
 
-        
+
         [HttpGet]
-        public async Task<IEnumerable<Table>> GetTables()
+        public async Task<ActionResult<IEnumerable<Table>>> GetTables()
         {
-            return null; //await _context.Tables.ToListAsync();
+            return await _context.Tables.ToListAsync();
         }
 
-        /*
+
         [Route("{id}")]
         [HttpGet]
-        public Table GetTable(int id)
+        public async Task<ActionResult<Table>> GetTable(int id)
         {
-            return null;
+            var table = await _context.Tables.FindAsync(id);
+            if (table == null)
+            {
+                return NotFound();
+            }
+            return table;
         }
 
-        [Route("create")]
         [HttpPost]
-        public ActionResult InsertTable(IFormCollection collection)
+        public async Task<ActionResult> InsertTable(Table table)
         {
             try
             {
+                _context.Tables.Add(table);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(GetTables));
             }
             catch
@@ -48,33 +51,31 @@ namespace RestoApi.Controllers
             }
         }
 
-        [Route("update/{id}")]
+        [Route("{id}")]
         [HttpPut]
-        public ActionResult EditTable(int id, IFormCollection collection)
+        public async Task<ActionResult> EditTable(int id, Table tableTmp)
         {
-            try
+            if (id == tableTmp.Id)
             {
-                return RedirectToAction(nameof(GetTables));
-            }
-            catch
-            {
-                return null;
-            }
-        }
+                var table = await _context.Tables.FindAsync(id);
 
-        [Route("delete/{id}")]
-        [HttpPut]
-        public ActionResult DeleteTable(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(GetTables));
+                if (table == null)
+                {
+                    return NotFound();
+                }
+
+                table.NumTable = tableTmp.NumTable;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch
+                {
+                    return NotFound();
+                }
             }
-            catch
-            {
-                return null;
-            }
+            return RedirectToAction(nameof(GetTables));
         }
-        */
     }
 }

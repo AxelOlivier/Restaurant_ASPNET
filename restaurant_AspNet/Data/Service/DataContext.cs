@@ -3,27 +3,15 @@ using RestoApi.models;
 
 namespace RestoApi.Data
 {
-    public class DataContext : DbContext, IDataContext
+    public class DataContext : DbContext
     {
-        public DbSet<Table> Tables { get; }
+        public DbSet<Table> Tables { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlite("Data Source=Resto.db");
+        public DataContext(DbContextOptions options) : base(options) { }
 
-        /*
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Table>();
-            
-            if(condition){
-            
-            }
-            if(condition){
-
-            }
-
         }
-        */
-
     }
 }

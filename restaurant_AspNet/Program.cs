@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using RestoApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,9 +9,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddRazorPages();
+builder.Services.AddDbContext<DataContext>(options =>
+   options.UseSqlite("Data Source=Resto.db"));
 
-builder.Services.AddScoped<IDataContext, DataContext>();
 
 var app = builder.Build();
 

@@ -4,22 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\WeatherForecastController.cs" />
+    <Compile Remove="Data\IDataContext.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Resto.db-shm" />
-    <None Remove="Resto.db-wal" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="RestoApi.csproj" />
-    <None Include="RestoApi.sln" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="6.0.5" />
