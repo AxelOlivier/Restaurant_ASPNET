@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RestoApi.models
 {
-    [Table("Etat")]
-    public class Etat
+    [Table("TypeAliment")]
+    public class TypeAliment
     {
         [Key]
         [Column("id")]

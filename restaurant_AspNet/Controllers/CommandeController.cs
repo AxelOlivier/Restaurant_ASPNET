@@ -3,46 +3,47 @@ using Microsoft.EntityFrameworkCore;
 using RestoApi.Data;
 using RestoApi.models;
 
+
 namespace RestoApi.Controllers
 {
-    [Route("tables")]
+    [Route("commandes")]
     [ApiController]
-    public class TableController : ControllerBase
+    public class CommandeController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public TableController(DataContext context)
+        public CommandeController(DataContext context)
         {
             _context = context;
         }
 
-        
+
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Table>>> GetTables()
+        public async Task<ActionResult<IEnumerable<Commande>>> GetCommandes()
         {
-            return await _context.Table.ToListAsync();
+            return await _context.Commande.ToListAsync();
         }
 
-        
+
         [Route("{id}")]
         [HttpGet]
-        public async Task<ActionResult<Table>> GetTable(int id)
+        public async Task<ActionResult<Commande>> GetCommande(int id)
         {
-            var table = await _context.Table.FindAsync(id);
-            if (table == null)
+            var commande = await _context.Commande.FindAsync(id);
+            if (commande == null)
             {
                 return NotFound();
             }
-            return table;
+            return commande;
         }
 
 
         [HttpPost]
-        public async Task<ActionResult> InsertTable(Table table)
+        public async Task<ActionResult> InsertCommande(Commande commande)
         {
             try
             {
-                _context.Table.Add(table);
+                _context.Commande.Add(commande);
                 await _context.SaveChangesAsync();
             }
             catch
@@ -56,18 +57,20 @@ namespace RestoApi.Controllers
 
         [Route("{id}")]
         [HttpPut]
-        public async Task<ActionResult> EditTable(int id, Table tableTmp)
+        public async Task<ActionResult> EditCommande(int id, Commande commandeTmp)
         {
-            if (id == tableTmp.Id)
+            if (id == commandeTmp.Id)
             {
-                var table = await _context.Table.FindAsync(id);
-                
-                if (table == null)
+                var commande = await _context.Commande.FindAsync(id);
+
+                if (commande == null)
                 {
                     return NotFound();
                 }
 
-                table.NumTable = tableTmp.NumTable;
+                commande.Table = commandeTmp.Table;
+                commande.Alimentaire= commandeTmp.Alimentaire;
+                commande.Etat = commandeTmp.Etat;
 
                 try
                 {
@@ -84,19 +87,19 @@ namespace RestoApi.Controllers
 
         [Route("{id}")]
         [HttpDelete]
-        public async Task<ActionResult> DeleteTable(int id)
+        public async Task<ActionResult> DeleteCommande(int id)
         {
-            
-            var table = await _context.Table.FindAsync(id);
 
-            if (table == null)
+            var commande = await _context.Commande.FindAsync(id);
+
+            if (commande == null)
             {
                 return NotFound();
             }
 
             try
             {
-                _context.Table.Remove(table);
+                _context.Commande.Remove(commande);
                 await _context.SaveChangesAsync();
             }
             catch

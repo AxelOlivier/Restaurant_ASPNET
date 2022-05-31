@@ -1,9 +1,20 @@
-﻿namespace RestoApi.models
+﻿using SQLite;
+using System.ComponentModel.DataAnnotations;
+
+namespace RestoApi.models
 {
+    [Table("Alimentaire")]
     public class Alimentaire
     {
-        public int Id { get; }
-        public string Nom { get; }
-        public string Type { get; }
+        [Key]
+        [Column("id")]
+        public int Id { get; set; }
+
+        [Column("nom")]
+        public string Nom { get; set; }
+
+        [Column("TypeAliment")]
+        public int TypeAliment { get; set; }
+        
     }
 }

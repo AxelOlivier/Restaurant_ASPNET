@@ -5,44 +5,43 @@ using RestoApi.models;
 
 namespace RestoApi.Controllers
 {
-    [Route("tables")]
+    [Route("aliments")]
     [ApiController]
-    public class TableController : ControllerBase
+    public class AlimentController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public TableController(DataContext context)
+        public AlimentController(DataContext context)
         {
             _context = context;
         }
 
-        
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Table>>> GetTables()
+        public async Task<ActionResult<IEnumerable<Alimentaire>>> GetAliments()
         {
-            return await _context.Table.ToListAsync();
+            return await _context.Alimentaire.ToListAsync();
         }
 
-        
+
         [Route("{id}")]
         [HttpGet]
-        public async Task<ActionResult<Table>> GetTable(int id)
+        public async Task<ActionResult<Alimentaire>> GetAliment(int id)
         {
-            var table = await _context.Table.FindAsync(id);
-            if (table == null)
+            var aliment = await _context.Alimentaire.FindAsync(id);
+            if (aliment == null)
             {
                 return NotFound();
             }
-            return table;
+            return aliment;
         }
 
 
         [HttpPost]
-        public async Task<ActionResult> InsertTable(Table table)
+        public async Task<ActionResult> InsertAliment(Alimentaire aliment)
         {
             try
             {
-                _context.Table.Add(table);
+                _context.Alimentaire.Add(aliment);
                 await _context.SaveChangesAsync();
             }
             catch
@@ -56,18 +55,19 @@ namespace RestoApi.Controllers
 
         [Route("{id}")]
         [HttpPut]
-        public async Task<ActionResult> EditTable(int id, Table tableTmp)
+        public async Task<ActionResult> EditAliment(int id, Alimentaire alimentTmp)
         {
-            if (id == tableTmp.Id)
+            if (id == alimentTmp.Id)
             {
-                var table = await _context.Table.FindAsync(id);
-                
-                if (table == null)
+                var aliment = await _context.Alimentaire.FindAsync(id);
+
+                if (aliment == null)
                 {
                     return NotFound();
                 }
 
-                table.NumTable = tableTmp.NumTable;
+                aliment.Nom = alimentTmp.Nom;
+                aliment.TypeAliment = alimentTmp.TypeAliment;
 
                 try
                 {
@@ -84,19 +84,19 @@ namespace RestoApi.Controllers
 
         [Route("{id}")]
         [HttpDelete]
-        public async Task<ActionResult> DeleteTable(int id)
+        public async Task<ActionResult> DeleteAliment(int id)
         {
-            
-            var table = await _context.Table.FindAsync(id);
 
-            if (table == null)
+            var aliment = await _context.Alimentaire.FindAsync(id);
+
+            if (aliment == null)
             {
                 return NotFound();
             }
 
             try
             {
-                _context.Table.Remove(table);
+                _context.Alimentaire.Remove(aliment);
                 await _context.SaveChangesAsync();
             }
             catch
